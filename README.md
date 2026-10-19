@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 Traditional CPU scheduling policies represent a rigid commitment to particular workload assumptions:
 * **FCFS** minimizes context switching overhead but causes head-of-line blocking for short jobs (convoy effect).
@@ -18,7 +18,7 @@ Traditional CPU scheduling policies represent a rigid commitment to particular w
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 * **Deterministic Discrete-Event Engine:** High-performance, reproducible simulation clock tracking process arrival, CPU execution, I/O blocking, and context switches.
 * **Shared Simulation Core:** All policies share an identical event loop and mechanics to eliminate simulation artifacts.
@@ -33,7 +33,7 @@ Traditional CPU scheduling policies represent a rigid commitment to particular w
 
 ---
 
-## 📐 ADAPT Policy Selection Rules
+## ADAPT Policy Selection Rules
 
 The controller samples features every window of **200 time units** ($Q$ = ready queue length, $cv$ = coefficient of variation of remaining bursts, burst distribution percentiles). Rules are evaluated in strict priority order (first match wins):
 
@@ -48,7 +48,7 @@ The controller samples features every window of **200 time units** ($Q$ = ready 
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```text
 CS1_repo_NEW/
@@ -83,7 +83,7 @@ CS1_repo_NEW/
 
 ---
 
-## 🛠️ Reproduction Guide
+## Reproduction Guide
 
 ### 1. Requirements
 
@@ -118,7 +118,7 @@ python analysis/plots.py
 
 ---
 
-## 📊 Summary of Results
+## Summary of Results
 
 * **Heterogeneous Workloads:** On `mixed` workloads, ADAPT reduces mean waiting time by **19–21%** compared to FCFS and by **24–31%** compared to RR-16 ($p < 0.001$, Bonferroni-corrected), maintaining a low context switch overhead (~6.9% vs. 12.3% for RR-4).
 * **Homogeneous Workloads:** On `cpu` and `short` workloads, ADAPT naturally reduces to FCFS for 85–91% of execution time, preventing wasteful preemptions.
@@ -127,7 +127,7 @@ python analysis/plots.py
 
 ---
 
-## 🔬 Experimental Rigor
+## Experimental Rigor
 
 * **Disjoint Seed Protocol:** Controller thresholds were tuned exclusively on tuning seeds (`1000–1009`). All reported experimental evaluations were conducted across disjoint evaluation seeds (`0–29`).
 * **Normalized Load:** Offered load is normalized to $\rho = 0.85$ across all workload types by scaling arrival rate $\lambda = \rho / E[D]$.
