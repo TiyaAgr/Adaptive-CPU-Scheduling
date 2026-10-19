@@ -1,0 +1,12 @@
+# Experiment configuration (mirrors src/run_all.py)
+seeds_final: 0-29          # evaluation seeds
+seeds_tuning: 1000-1009    # used ONLY to choose adaptive thresholds (tune3.py)
+context_switch_cost: 0.5
+offered_load_rho: 0.85
+workload_types: [cpu, io, short, mixed]
+principal_sizes: [50, 200, 1000]
+scalability_sizes: [50, 100, 200, 500, 1000, 2000, 5000]   # mixed, 10 seeds
+robustness: {rho: [0.5, 0.7, 0.85, 0.95], arrival: [poisson, bursty], n: 200}
+sensitivity: {window: [50, 100, 200, 400, 800], k: [1, 2, 3, 4], cs: [0.1, 0.5, 1.0, 2.0]}
+algorithms: {FCFS: {}, SJF: {}, SRTF: {}, RR-4: {q: 4}, RR-16: {q: 16}, PRIO: {aging: 20}, ADAPT: {window: 200, k: 2, q_low: 1, cv_hi: 0.6, cv_lo: 0.3, short_hi: 0.5, q_high: 10}}
+tuned_thresholds_note: grid search over cv_lo, cv_hi, q_low, short_hi on tuning seeds, 200 procs
